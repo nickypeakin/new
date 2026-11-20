@@ -1,23 +1,29 @@
 # Torque Cup
 
-An original, boost-powered car football game that runs in the browser. Drive, jump, flip and fly to knock a giant ball into the other team's goal under a glass dome.
+An original, browser-based 1v1 car football game: you against a bot, a giant ball, and a glass arena whose floor curves up into the walls and ceiling. Drive the walls, fly with boost, and score.
 
 ## Play
 
 Open `index.html` in a modern browser. It's a single file. The 3D engine ([three.js](https://threejs.org/)) loads from a CDN, so you need an internet connection.
 
-To host it, enable **GitHub Pages** for this repo (Settings → Pages → deploy from branch, root folder). The game is then served at `https://<user>.github.io/<repo>/`.
+To host it, enable **GitHub Pages** for this repo (Settings → Pages → deploy from branch, root folder).
 
-## Features
+## What's in it
 
-- **1v1, 2v2 or 3v3** against bots, with three bot skill levels (Rookie, Pro, All-Star) and 2, 3 or 5 minute matches
-- Arcade car physics: throttle, reverse, drift, jump, double-jump, directional flips, air pitch, yaw and roll, and air boost for aerial hits
-- Boost meter with 6 big pads (full refill) and 22 small pads
-- Supersonic speed and demolitions: hit an opponent at top speed to blow them up (they respawn after 3 s)
-- Goal explosions, overtime (next goal wins), and the clock waits for the ball to land at 0:00
-- End-of-match stats: goals, shots, saves, touches, demos
-- Ball cam and car cam, keyboard, mouse, gamepad and on-screen touch controls
-- Synthesized sound, with no audio files
+- **1v1 vs a bot** at three skill levels (Rookie, Pro, All-Star), with 3, 5 or 7 minute matches, overtime, and an end-of-match scoreboard
+- **Full-size arena**: an 8192 × 10240 pitch, a 2044-high ceiling, 45° corner cuts, and goals 1786 wide × 643 tall × 880 deep. The ball has a radius of 92.75 and the car hitbox is about 118 × 84 × 36. Everything uses the same unit scale.
+- **Curved walls you can drive on**: every edge of the arena is rounded, so you can drive from the floor up the walls and across the ceiling. Jump to push off a wall. The arena is a signed distance field, and both the physics and the rendered mesh come from it.
+- **Car feel**:
+  - Throttle tops out at 1410 and boost at 2300. Supersonic is at 2200, and that's where demolitions happen.
+  - Steering tightens at low speed.
+  - Powerslide, jump plus hold-to-go-higher, and a double jump.
+  - Flips that push the car in the stick direction.
+  - Air pitch, yaw and roll with damping.
+  - Boost works in the air, so you can do aerials.
+- **Ball hits** combine a real impulse (a heavier car hitting a lighter ball, including the spin of a flip) with an extra speed-scaled kick, so shots feel punchy.
+- **Camera**: 110° field of view, 270 behind and 110 above the car, and a -3° tilt. Switch between ball cam and car cam.
+- Boost pads (6 big, 22 small), goal explosions, and a clock that waits for the ball to land at 0:00
+- Keyboard, mouse, gamepad and touch controls. Sound is synthesized, so there are no audio files.
 
 ## Controls
 
@@ -27,10 +33,12 @@ To host it, enable **GitHub Pages** for this repo (Settings → Pages → deploy
 | Steer (yaw in the air) | `A` `D` or `←` `→` | Left stick |
 | Jump, double jump, flip (jump + direction) | `Space` / right click | A |
 | Boost | `Shift` / left click | B |
-| Drift | `X` | X |
+| Powerslide | `X` | X |
 | Air roll | `Q` `E` | LB / RB |
-| Toggle ball cam | `C` | Y |
+| Ball cam / car cam | `C` | Y |
 | Pause | `Esc` / `P` | Start |
 | Mute | `M` | |
+
+If you land on your roof, press jump to flip back onto your wheels.
 
 On phones and tablets, a virtual joystick appears on the left, with Jump, Boost, Drift and Cam buttons on the right.
